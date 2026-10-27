@@ -191,14 +191,16 @@ Use synthetic or appropriately authorized samples. Never execute suspicious scri
 
 **This is an educational prototype, not a production malware scanner or endpoint protection system.**
 
+
 ## Future Improvements
 
-- Automated unit tests
-- Additional detection rules
-- Improved false-positive handling
-- More reliable AI explanations
-- Structured JSON reporting
-- Markdown export for benign samples
+- Expand automated test coverage, including CLI and report-export behavior
+- Add detection rules for additional suspicious script patterns
+- Improve false-positive handling and contextual analysis
+- Make AI-generated explanations more reliable and evidence-focused
+- Add structured JSON reporting
+- Support Markdown report export for benign samples
+
 
 ## Why I Built This
 
