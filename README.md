@@ -31,6 +31,28 @@ These are heuristic indicators, not proof of malicious activity. Legitimate scri
 
 Despite its name, this project does not detect kernel rootkits or perform system-level rootkit scanning.
 
+## Automated Testing
+
+The Rootkit Exorcist includes five automated unit tests using Python's built-in `unittest` framework.
+
+The tests cover:
+
+- Cron persistence detection
+- Download-and-execute detection
+- PowerShell encoded-command detection
+- Benign script handling
+- False-positive prevention for `crontab -l`
+
+Run the test suite from the project root:
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+All five tests passed during initial validation.
+
+These tests verify selected detection behaviors; they do not establish comprehensive malware detection coverage.
+
 ## How It Works
 
 1. The user provides a script file.
