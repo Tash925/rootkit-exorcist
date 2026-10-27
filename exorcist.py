@@ -129,7 +129,7 @@ def main():
             encoding="utf-8"
         )
 
-    print(f"\nMarkdown report saved to: {output_path}")
+        print(f"\nMarkdown report saved to: {output_path}")
 
 if __name__ == "__main__":
     main()
