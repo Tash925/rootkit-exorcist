@@ -22,6 +22,11 @@ def main():
         help="Choose professional SOC or theatrical Exorcist reporting"
     )
 
+    parser.add_argument(
+    "--output",
+    help="Save the analysis as a Markdown report"
+    )
+
     args = parser.parse_args()
     path = Path(args.file)
 
@@ -75,7 +80,56 @@ def main():
 
     explanation = summon_priest(findings, mode=args.mode)
     print(explanation)
+   
+    if args.output:
+        report = [
+            "# The Rootkit Exorcist — Analysis Report",
+            "",
+            f"**Analyzed file:** `{path.name}`",
+            "",
+            f"**Reporting mode:** {args.mode.upper()}",
+            "",
+            "## Static Detection Findings",
+            "",
+            "**Verdict:** Manual investigation required.",
+            "",
+        ]
 
+        for finding in findings:
+            report.extend([
+                f"### {finding['name']}",
+                "",
+                f"- **Severity:** {finding['severity']}",
+                f"- **Line:** {finding['line']}",
+                f"- **MITRE ATT&CK:** {finding['technique']}",
+                f"- **Evidence:** `{finding['evidence']}`",
+                f"- **Description:** {finding['description']}",
+                "",
+            ])
+
+        report.extend([
+            "## AI-Generated Investigation Notes",
+            "",
+            "> AI-generated content is supplementary and may be inaccurate.",
+            "",
+            "```text",
+            explanation.replace("```", "'''"),
+            "```",
+            "",
+            "## Limitations",
+            "",
+            "- Findings are heuristic indicators, not proof of malware.",
+            "- No script execution or automatic remediation was performed.",
+            "",
+        ])
+
+        output_path = Path(args.output)
+        output_path.write_text(
+            "\n".join(report),
+            encoding="utf-8"
+        )
+
+    print(f"\nMarkdown report saved to: {output_path}")
 
 if __name__ == "__main__":
     main()
